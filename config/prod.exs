@@ -19,3 +19,18 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+LiveViewStudioWeb
+config :blog, LiveViewStudioWeb.Endpoint,
+  url: [
+    host: "portfolio-app.makoto-developer.net",
+    port: System.get_env("APP_PORT_NOT_CERT") || "80"
+  ],
+  https: [
+    port: ,System.get_env("APP_PORT") || "433",
+    cipher_suite: :strong,
+    certfile: Path.expand("priv/cert/certificate.crt"),
+    keyfile: Path.expand("priv/cert/private.key"),
+    cacertfile: Path.expand("priv/cert/ca_bundle.crt")
+  ],
+  force_ssl: [hsts: true]
+
